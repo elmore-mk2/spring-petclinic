@@ -4,6 +4,9 @@
 <body>
 
   <h2>Find Owners</h2>
+  <div th:unless="${keyword == null}">
+    <label>search keyword is <span th:utext="${keyword}"></span></label>
+  </div>
 
   <form th:object="${owner}" th:action="@{/owners}" method="get"
     class="form-horizontal" id="search-owner-form">

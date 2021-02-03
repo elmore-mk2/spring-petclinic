@@ -63,7 +63,10 @@
                       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
                       <span>Error</span>
                   </li>
-  
+                  <li th:replace="::menuItem ('/debug', 'debug', 'debug page', 'console', 'Debug Room')">
+                      <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+                      <span>Debug</span>
+                  </li>
               </ul>
           </div>
       </div>
@@ -88,7 +91,24 @@
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+  <script type="text/javascript" th:inline="javascript">
+  /*<![CDATA[*/
+  $('#send').on('click', function(){
+    // Ajax通信を開始
+      $('#result').val("処理待ち");
+    postdata = {"cmd": $('#command-option').val()}
+    $.post(
+      //ここでデータの送信先URLを指定します。
+      "/rest/execute", postdata,
+      //処理
+      function(data) {
+        console.log(data)
+        $('#result').val(JSON.parse(data)["result"]);
+      }
+    )
+  })
+  /*]]>*/
+  </script>
 </body>
 
 </html>

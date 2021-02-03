@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'debug')}">
+
+<body>
+
+<h2>Debug Room!!!</h2>
+<label>input option here</label><input type="text" id="command-option">
+<button type="button" id="send">execute</button>
+<br><hr><br>
+<label>result</label><br>
+<textarea id="result"></textarea>
+
+</body>
+
+</html>

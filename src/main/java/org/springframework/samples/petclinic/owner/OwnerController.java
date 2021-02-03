@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +43,7 @@ class OwnerController {
     private final OwnerRepository owners;
 
 
-    public OwnerController(OwnerRepository clinicService) {
+    public OwnerController(@Qualifier("ownerRepositoryImpl") OwnerRepository clinicService) {
         this.owners = clinicService;
     }
 
@@ -84,6 +85,7 @@ class OwnerController {
 
         // find owners by last name
         Collection<Owner> results = this.owners.findByLastName(owner.getLastName());
+        model.put("keyword", owner.getLastName());
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");

@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -38,7 +39,7 @@ class PetController {
     private final PetRepository pets;
     private final OwnerRepository owners;
 
-    public PetController(PetRepository pets, OwnerRepository owners) {
+    public PetController(PetRepository pets, @Qualifier("ownerRepositoryImpl") OwnerRepository owners) {
         this.pets = pets;
         this.owners = owners;
     }
