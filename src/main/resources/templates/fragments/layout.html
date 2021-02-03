@@ -63,10 +63,12 @@
                       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
                       <span>Error</span>
                   </li>
-                  <li th:replace="::menuItem ('/debug', 'debug', 'debug page', 'console', 'Debug Room')">
+                  <th:block th:if="${debug}">
+                  <li  th:replace="::menuItem ('/debug', 'debug', 'debug page', 'console', 'Debug Room')">
                       <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
                       <span>Debug</span>
                   </li>
+                  </th:block>
               </ul>
           </div>
       </div>
